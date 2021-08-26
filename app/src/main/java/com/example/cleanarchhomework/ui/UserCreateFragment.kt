@@ -16,10 +16,9 @@ import java.sql.Date
 
 class UserCreateFragment : BottomSheetDialogFragment() {
 
-    private lateinit var etName: EditText
-    private lateinit var etSurname: EditText
+    private lateinit var et_Name: EditText
+    private lateinit var et_Surname: EditText
     private lateinit var button: Button
-
     private lateinit var usersViewModel: UserCreateViewModel
     private lateinit var date: Date
 
@@ -30,18 +29,18 @@ class UserCreateFragment : BottomSheetDialogFragment() {
         (dialog as BottomSheetDialog).behavior.state = BottomSheetBehavior.STATE_EXPANDED
         val view = inflater.inflate(R.layout.fragment_user_create, container, false)
 
-        etName = view.findViewById(R.id.et_name)
-        etSurname = view.findViewById(R.id.et_surname)
+        et_Name = view.findViewById(R.id.et_name)
+        et_Surname = view.findViewById(R.id.et_surname)
         button = view.findViewById(R.id.bt_add_user)
 
         usersViewModel = ViewModelProviders.of(this).get(UserCreateViewModel::class.java)
         usersViewModel.insertUsersState.observe(this){
-            etName.setText(it.name)
-            etSurname.setText(it.surname)
+            et_Name.setText(it.name)
+            et_Surname.setText(it.surname)
         }
 
         button.setOnClickListener {
-            usersViewModel.insert(etName.text.toString(), etSurname.text.toString())
+            usersViewModel.insert(et_Name.text.toString(), et_Surname.text.toString())
         }
 
         return view
