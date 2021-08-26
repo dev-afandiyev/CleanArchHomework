@@ -8,11 +8,11 @@ import com.example.cleanarchhomework.model.UsersRepository
 
 class UserCreateViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val usersRepository: UsersRepository = UsersRepository(application)
+    private val usersRepo: UsersRepository = UsersRepository(application)
     val insertUsersState: MutableLiveData<UserModel> = MutableLiveData<UserModel>()
 
     fun insert(name: String, surname: String) {
-        usersRepository.insert(UserModel(name, surname))
+        usersRepo.insert(UserModel(name, surname))
     }
 
 }

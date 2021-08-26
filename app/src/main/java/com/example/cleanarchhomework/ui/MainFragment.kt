@@ -17,8 +17,8 @@ class MainFragment : Fragment() {
 
     private lateinit var button: Button
     private lateinit var userCreateFragment: UserCreateFragment
-    private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: UsersAdapter
+    private lateinit var usersList: RecyclerView
+    private lateinit var userAdapter: UsersAdapter
     private lateinit var usersViewModel: MainViewModel
 
     @SuppressLint("FragmentLiveDataObserve")
@@ -28,17 +28,18 @@ class MainFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_main, container, false)
 
-        recyclerView = view.findViewById(R.id.rv_users)
-        adapter = UsersAdapter()
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = adapter
+        usersList = view.findViewById(R.id.rv_users)
+        button = view.findViewById(R.id.bt_open_book_dialog)
+
+        userAdapter = UsersAdapter()
+        usersList.layoutManager = LinearLayoutManager(context)
+        usersList.adapter = userAdapter
 
         usersViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         usersViewModel.getAllUsers().observe(this) {
-                adapter.setList(it)
+            userAdapter.setList(it)
         }
 
-        button = view.findViewById(R.id.bt_open_book_dialog)
         button.setOnClickListener {
             userCreateFragment = UserCreateFragment()
             userCreateFragment?.show(requireFragmentManager(), null)

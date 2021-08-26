@@ -8,10 +8,10 @@ import com.example.cleanarchhomework.model.UsersRepository
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val usersRepository: UsersRepository = UsersRepository(application)
+    private val usersRepo: UsersRepository = UsersRepository(application)
 
     fun getAllUsers(): LiveData<List<UserModel>> {
-        return usersRepository.getAllItem()
+        return usersRepo.getAllItem()
     }
 
 }

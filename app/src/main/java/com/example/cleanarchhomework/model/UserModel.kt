@@ -11,6 +11,8 @@ import java.util.*
 data class UserModel(
     val name: String? = null,
     val surname: String? = null,
+
+    // not a working date for the library room
 //    @TypeConverters(DateConverter::class)
 //    val date: Date? = null,
 //    val created: String? = null,
